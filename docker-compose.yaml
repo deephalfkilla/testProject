@@ -1,0 +1,121 @@
+# To execute this docker-compose yml file use `docker-compose -f docker-compose.yml up`
+# Add the `-d` flag at the end for detached execution
+# To stop the execution, hit Ctrl+C, and then `docker-compose -f docker-compose.yml down`
+version: "3"
+services:
+
+  chrome_v102:
+    image: nexus-docker2.sezinno.ru/selenium/node-chrome:102.0
+    ports:
+      - "7900:7900"
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  chrome_v100:
+    image: nexus-docker2.sezinno.ru/selenium/node-chrome:100.0
+    ports:
+      - "7901:7900"
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  chrome_v93:
+    image: nexus-docker2.sezinno.ru/selenium/node-chrome:93.0
+    ports:
+      - "7902:7900"
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  edge_v101:
+    image: nexus-docker2.sezinno.ru/selenium/node-edge:101.0
+    ports:
+      - "7903:7900"
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  edge_v100:
+    image: nexus-docker2.sezinno.ru/selenium/node-edge:100.0
+    ports:
+      - "7904:7900"
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  edge_v94:
+    image: nexus-docker2.sezinno.ru/selenium/node-edge:94.0.992.14-edgedriver-94.0.992.14-20210908
+    ports:
+      - "7905:7900"
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  firefox_v100:
+    image: nexus-docker2.sezinno.ru/selenium/node-firefox:100.0
+    ports:
+      - "7906:7900"
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  firefox_v99:
+    image: nexus-docker2.sezinno.ru/selenium/node-firefox:99.0
+    ports:
+      - "7907:7900"
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  firefox_v93:
+    image: nexus-docker2.sezinno.ru/selenium/node-firefox:93.0-20211025
+    ports:
+      - "7908:7900"
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  selenium-hub:
+    image: nexus-docker2.sezinno.ru/selenium/hub:4.1.3-20220405
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
